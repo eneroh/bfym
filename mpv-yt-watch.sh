@@ -18,7 +18,7 @@ else
     echo -e "Available Resolutions: "
     resInput=$(yt-dlp ytsearch1:"$search" --list-formats | grep -e '240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | tr -d 'p,' | tr -s '\n' | uniq | nl)
     echo "$resInput"
-    read -p "Choose resolution [1|2|3|4|5|6]: " resInput
+    read -p "Choose resolution [1-6]: " resInput
     case $resInput in
     "1")
 	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
