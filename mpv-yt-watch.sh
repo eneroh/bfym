@@ -51,6 +51,7 @@ case $formatRes in
 	2160)
 	;;
 	*)
+		echo "Invalid option! Please try again"
 		exit 1;
 	;;
 esac
