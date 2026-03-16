@@ -3,7 +3,7 @@ A combination of both mpv and yt-dlp to allow users to watch youtube videos via 
 
 ### Features ###
 - Responsive terminal based interface
-- Video resolution options from 240p to 4K
+- Video resolution options from 144p to 4K
 - Support for youtube videos that contain different languages i.e. Korean, Japanese etc.
 - Video streaming functionality
 - Option to download video at end of script
