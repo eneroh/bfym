@@ -7,79 +7,73 @@
 # - Addition of 240p resolution option
 # - Change over from search variable grep to cache variable grep, allowing for all language support (korean, japanese etc.) [may require wqy-zenhei on arch linux]
 # - Replaced relevant echoes and reads with just reads, simplifying the code by a few lines
+# - File extension selector implemented
+# - File download option at the end of the script w/ confirmation prompt. More granularity to the user. You are welcome aha
+# - Removed former number based resolution. This is what broke the script previously and caused errors. You will now need to input a resolution but now there is no possibility for script breaking. WHATSOEVER. Don't test this aha
+# - Inclusion of 144p video res, figured if I'm trying to compete, I might as well meet the youtube standard. 144p all the way to 4K. LETS GO BAYBEEEEEE!
+# - If statements replaced with cases. Actually much better in this use case and fixed a lot of headaches.
+# - I have tested numerous videos over numerous languages, video resolutions and extensions and I can't seem to break it anymore. If you are an experienced tester, please try and let me know.
 
-read -p "Input search string <lowercase only>: " search
+read -rp "Input search string [ Song | Music Artist | Youtuber ]: " search
 echo "You are searching for: $search"
-if [[ -z "$search" ]]; then
-  echo "No search string inputted"
-else
-  read -p "Would you like to change the resolution? (default is dependent on video) [Y/n]: " resConfirm
-  if [[ "$resConfirm" == [Yy] ]]; then
-    echo -e "Available Resolutions: "
-    resInput=$(yt-dlp ytsearch1:"$search" --list-formats | grep -e '240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | tr -d 'p,' | tr -s '\n' | uniq | nl)
-    echo "$resInput"
-    read -p "Choose resolution [1-6]: " resInput
-    case $resInput in
-    "1")
-	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-	    echo "cache: $cache"
-	    result=$(ls | grep -i "$cache")
-	    echo "search: $search"
-	    echo "result: $result"
-	    mpv "$result" --ytdl-format="bestvideo[ext=webm][height=240]+bestaudio[ext=webm]" 
-    ;;
-    "2")
-	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-	    echo "cache: $cache"
-	    result=$(ls | grep -i "$cache")
-	    echo "result: $result"
-	    mpv "$result" --ytdl-format="bestvideo[ext=webm][height=480]+bestaudio[ext=webm]"
-    ;;
-    "3")
-	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-	    echo "cache: $cache"
-	    echo "$search"
-	    result=$(ls | grep -i "$cache")
-	    echo "result: $result"
-	    mpv "$result" --ytdl-format="bestvideo[ext=webm][height=720]+bestaudio[ext=webm]" 
-    ;;
-    "4")
-	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-	    echo "cache: $cache"
-	    result=$(ls | grep -i "$cache")
-	    echo "result: $result"
-	    mpv "$result" --ytdl-format="bestvideo[ext=webm][height=1080]+bestaudio[ext=webm]"
 
-    ;;
-    "5")
-	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-	    echo "cache: $cache"
-	    result=$(ls | grep -i "$cache")
-	    echo "result: $result"
-	    mpv "$result" --ytdl-format="bestvideo[ext=webm][height=1440]+bestaudio[ext=webm]" 
-    ;;
-    "6")
-	    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-	    echo "cache: $cache"
-	    result=$(ls | grep -i "$cache")
-	    echo "result: $result"
-	    mpv "$result" --ytdl-format="bestvideo[ext=webm][height=2160]+bestaudio[ext=webm]" 
-    ;;
-    *)
-	    echo "Please enter a valid input!"
-    esac
-  elif [[ "$resConfirm" == [A-za-Z] ]]; then
-    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-    echo "cache: $cache"
-    result=$(ls | grep -i "$cache")
-    echo "result: $result"
-    mpv "$result"
-  
-  else
-    cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
-    echo "cache: $cache"
-    result=$(ls | grep -i "$cache")
-    echo "result: $result"
-    mpv "$result"
-  fi
-fi
+formatExt=$(yt-dlp ytsearch1:"$search" --list-formats | grep -e 'webm\|mp4' | grep -v 'audio only' | awk '{print $2;}' | sort -u | nl)
+echo "$formatExt"
+read -rp "Choose extension format (Default: empty) [1-2]: " formatExt
+case $formatExt in
+	1)
+		ext=[ext=mp4]
+	;;
+	2)
+		ext=[ext=webm]
+	;;
+	*)
+	;;
+esac
+
+formatRes=$(yt-dlp ytsearch1:"$search" --list-formats | grep -e '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | tr -s '\n' | tr -d ',' | uniq)
+echo "$formatRes"
+read -rp "Choose video resolution format (Default: best) [144|240|480|720|1080|1440|2160]: " formatRes
+
+case $formatRes in
+	144)	
+	;;
+	240)
+	;;
+	480)
+	;;
+	720)
+	;;
+	1080)
+	;;
+	1440)
+	;;
+	2160)
+	;;
+	*)
+	;;
+esac
+
+videoUrl=$(yt-dlp --get-id ytsearch1:"$search")
+videoUrl="https://youtube.com/watch?v=$videoUrl"
+
+read -rp "Would you like to save a copy of this video: $search? [y/N]: " dlConfirm
+
+case $dlConfirm in
+	y|Y)
+		echo "Downloading file" 
+		cache=$(yt-dlp ytsearch1:"$search" | grep "Destination" | tail -n 1 | sed 's/\[download] Destination: //g' | sed 's/.\{23\}$//')
+		result=$(ls | grep -i "$cache")
+		echo "Your video has been saved as $result"
+		echo "Now Streaming: $search"
+		mpv --ytdl-format="bestvideo$ext[height=$formatRes]+bestaudio" "$videoUrl"
+		echo "Thank you for using this mpv-yt-watch" 
+	;;
+	n|N)
+		mpv --ytdl-format="bestvideo$ext[height=$formatRes]+bestaudio" "$videoUrl"
+		echo "Thank you for using this mpv-yt-watch" 
+	;;
+	*)
+		echo "Invalid input! Please try again."
+	;;
+esac
