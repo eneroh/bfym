@@ -20,7 +20,7 @@
 printf "Input search string [Song | Music Artist | Youtuber]: "
 read -r -- search
 if [[ -z "$search" ]]; then
-  printf "Invalid input! Please try again!"
+  printf "\nInvalid input! Please try again!"
   exit 1;
 else
   printf "You are searching for: $search"
@@ -29,12 +29,12 @@ else
   videoUrl="https://youtube.com/watch?v=$videoUrl"
   
   title=$(yt-dlp --get-title "$videoUrl")
-  printf "Video located: $title"
+  printf "\nVideo located: $title"
   searchFormat=$(yt-dlp ytsearch1:"$videoUrl" --list-formats)
 
-  formatExt=$(printf "${searchFormat}" | grep -e 'webm\|mp4' | grep -v 'audio only' | awk '{print $2;}' | sort -u | nl)
-  printf "$formatExt"
-  printf "Choose extension format (Default: empty) [1-2]: " 
+  formatExt=$(printf "\n${searchFormat}" | grep -e 'webm\|mp4' | grep -v 'audio only' | awk '{print $2;}' | sort -u | nl)
+  printf "\n$formatExt"
+  printf "\nChoose extension format (Default: empty) [1-2]: " 
   read -rn1 -- formatExt
   case $formatExt in
 	1)
@@ -47,10 +47,10 @@ else
 	;;
   esac
 
-  formattedSearch=$(printf "${searchFormat}" | grep -e '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | tr -s '\n' | tr -d ',' | uniq)
+  formattedSearch=$(printf "\n${searchFormat}" | grep -e '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | tr -s '\n' | tr -d ',' | uniq)
 
-  formattedLine=$(printf "$formattedSearch" | sed -e :a -e '$!N; s/\n/ | /; ta' | sed -e 's/p60//g' | sed -e 's/p//g')
-  printf "${formattedSearch[@]}"$'\n'"Choose video resolution format (Default: best) [${formattedLine}]: " 
+  formattedLine=$(printf "\n$formattedSearch" | sed -e :a -e '$!N; s/\n/ | /; ta' | sed -e 's/p60//g' | sed -e 's/p//g')
+  printf "\n${formattedSearch[@]}"$'\n'"Choose video resolution format (Default: best) [${formattedLine}]: " 
   read -rn4 -- formatRes
   formatRes=${formatRes:-$(printf "${formattedSearch[@]}" | sort -t p -n -k 1 | tail -1 | sed -e 's/p//g')}
 
@@ -70,26 +70,27 @@ else
 	2160)
 	;;
 	*)
-		printf "Invalid option! Please try again"
+		printf "\nInvalid option! Please try again"
 		exit 1;
 	;;
   esac
 
-  printf "Would you like to save a copy of this video: $title? [y/N]: " 
+  printf "\nWould you like to save a copy of this video: $title? [y/N]: " 
   read -rn1 -- dlConfirm
   dlConfirm=${dlConfirm:-N}
 
   case $dlConfirm in
 	y|Y)
-		printf "Downloading file" 
+		printf "\nDownloading file" 
 		videoDl=$(yt-dlp "$videoUrl")
 		result=$(yt-dlp --get-filename "$videoUrl")
-		printf "Your video has been saved as: $result"
-		printf "Now Streaming: $title"
+		printf "\nYour video has been saved as: $result"
+		printf "\nNow Streaming: $title\n"
 		mpv --ytdl-format="bestvideo$ext[height=$formatRes]+bestaudio" "$videoUrl"
 		printf "Thank you for using mpv-yt-watch" 
 	;;
-	n|N)
+	n|N) 
+		printf "\nNow Streaming: $title\n"
 		mpv --ytdl-format="bestvideo$ext[height=$formatRes]+bestaudio" "$videoUrl"
 		printf "Thank you for using mpv-yt-watch" 
 	;;
