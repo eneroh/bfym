@@ -15,7 +15,7 @@
 # - I have tested numerous videos over numerous languages, video resolutions and extensions and I can't seem to break it anymore. If you are an experienced tester, please try and let me know.
 # - A very special thanks to: another-danny for improving upon the script. Video res formats are now much better and streamlined. He also added some good bash code hygiene practices I was unfamiliar with.
 # - Added native yt-dlp --get-title and --get-filename flags, fully fixing any complications with video titles. $ [] and other symbols. Even languages, will now no longer affect outputs. This band-aid, I have noticed slightly more latency towards the start and end of the script but honestly, it's much better than trying to develop my own messy symbol parser.
-# - Performing sanitization on my inputs, printf to replace echos, read's are now strictly for limiting inputs i.e. -nX (x being how many characters I allow)
+# - Performing sanitization on my inputs, printf to replace echoes, read's are now strictly for limiting inputs i.e. -nX (x being how many characters I allow users to input)
 
 printf "Input search string [Song | Music Artist | Youtuber]: "
 read -rn1 -- search
@@ -70,7 +70,7 @@ else
 	2160)
 	;;
 	*)
-		echo "Invalid option! Please try again"
+		printf "Invalid option! Please try again"
 		exit 1;
 	;;
   esac
@@ -81,7 +81,7 @@ else
 
   case $dlConfirm in
 	y|Y)
-		echo "Downloading file" 
+		printf "Downloading file" 
 		videoDl=$(yt-dlp "$videoUrl")
 		result=$(yt-dlp --get-filename "$videoUrl")
 		printf "Your video has been saved as: $result"
