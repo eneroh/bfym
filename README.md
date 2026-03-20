@@ -10,6 +10,15 @@ A command line utility combining both mpv and yt-dlp to allow users to watch and
 - Ability to change file extensions via the script
 - Now Streaming: "Video Title" Display Environment/Window Manager notification integration
 
+## Philosophy ##
+mpv-yt-watch intends to: K.I.S.S. Keep it simple, stupid.
+S - Simple: Minimal dependencies (mpv, yt-dlp that's about it)
+U - User focused: You do not NEED degree to use this and inputs will be clear and concise w/ example text
+S - Speed oriented: The command time will be utilized when testing similar commands to determine the fastest. Ensuring quick outputs [time <command>], as well as, keep big/time consuming commands outside of loops
+C - Compatibility: The ability to work the same/similar on as many devices as possible with limited degraded performance (i.e. smartphones, pc's, desktops, servers, maybe IoT [try to run mpv-yt-watch on a fridge lol])
+M - Minimal: Utilize bash functionality as much as possible instead of relying on other outside packages, as well as, utilize dependencies flags/tacs where necessary and not where excessive
+F - Follow bash best practices, as closely as possible & validation of script through multiple sources to ensure there are no errors
+
 ## Potential upgrades ##
 - Internal script flags/tacs to speed past the interactivity and give the power user immediate control/less handholding
 - Channel selection (needs to be a feature within yt-dlp), research indicates that this is possible. Touching base with suggestor to understand parameters before implementation
