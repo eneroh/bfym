@@ -14,7 +14,7 @@ A command line utility combining both mpv and yt-dlp to allow users to watch and
 mpv-yt-watch intends to: K.I.S.S. Keep it simple, stupid.
 <br>
 <br>
-S - Simple: Minimal dependencies (mpv, yt-dlp that's about it)
+S - Simple: Minimal dependencies (mpv, yt-dlp, ffmpeg and I guess bash)
 <br>
 <br>
 U - User focused: You do not NEED a degree to use this. Inputs and code will be clear and concise (example text and expanded flags respectively)
