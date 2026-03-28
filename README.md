@@ -56,7 +56,7 @@ C - Compatible: The ability to work the same/similar on as many devices as possi
 - File extension options (instead of having the default webm, you can use the option of mp4)
 - Adding video stream option functionality, you no longer will HAVE to download the file locally onto your machine. This should also resolve the issue of: [] $. At least for streaming. Pending download option fix.
 - Video download now optional, not required
-- Certain symbols specifically, [] $ mess with the download $result variable at ls | grep -i $result. Returning blank. Can be observed when downloading video: bazooka granny (LMAO)
+- Certain symbols specifically, [] $ mess with the download $result variable at ls | grep -i $result. Returning blank. Can be observed when downloading video: bazooka granny
 - Notify-send notification connectivity is now in place. Provide feedback on positive or negative
 - Simplified and sanitized both inputs and outputs
 - Full script bash validation with no errors
@@ -66,11 +66,11 @@ C - Compatible: The ability to work the same/similar on as many devices as possi
 ## Special Thanks ##
 mpv & yt-dlp - both have no idea I exist but this project is nothing without them
 <br>
-another-danny - Fellow bash enthusiast aha
+another-danny - Contributor
 <br>
 shellcheck - making my code better
 <br>
 geeksforgeeks.org - the printf article was a life saver
 
 ## Known Issues ##
-- If you use this script excessively on the same video (during testing specifically), your ip does get logged as a bot for an hour or two, during this time you are unable to watch videos. Sign in apparently fixes this, haven't tried this but not particularly a hassle. VPN is a workaround. [This issue is now very limited, unless you download videos constantly... Hours on end.]
+- If you use this script excessively on the same video your ip does get logged as a bot for an hour or two. Sign in apparently fixes this, haven't tried this but not particularly a hassle. VPN is a workaround. This issue is now very limited, unless you download videos constantly... Hours on end.
