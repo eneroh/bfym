@@ -12,9 +12,13 @@ A command line utility combining both mpv and yt-dlp to allow users to watch and
 
 ## Dependencies ##
 (in order)
+<br>
 bash
+<br>
 ffmpeg
+<br>
 yt-dlp
+<br>
 mpv
 
 ## Philosophy ##
