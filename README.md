@@ -10,6 +10,13 @@ A command line utility combining both mpv and yt-dlp to allow users to watch and
 - Ability to change file extensions via the script
 - Now Streaming: "Video Title" Display Environment/Window Manager notification integration
 
+## Dependencies ##
+(in order)
+bash
+ffmpeg
+yt-dlp
+mpv
+
 ## Philosophy ##
 mpv-yt-watch intends to: K.I.S.S. Keep it simple, stupid.
 <br>
