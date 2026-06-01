@@ -30,7 +30,7 @@ else
   case $formatExt in
 	  1)  aq=${arrayFE[0]}  ;;
 	  2)  aq=${arrayFE[1]}  ;;
-	  *)  (${arrayFE[0]})  ;;
+	  *)  aq=${arrayFE[0]}  ;;
   esac
 
     #stream video (webm format for streaming)
