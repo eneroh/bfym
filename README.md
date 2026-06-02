@@ -24,7 +24,7 @@ yt-dlp
 mpv
 
 ## Philosophy ##
-mpv-yt-watch intends to: K.I.S.S. Keep it simple, stupid.
+bfym intends to: K.I.S.S. Keep it simple, stupid.
 <br>
 <br>
 F - Follow rules: Follow bash best practices, as closely as possible & validate script through shellcheck to ensure there are no errors
