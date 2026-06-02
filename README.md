@@ -1,5 +1,5 @@
 # bfym (bash, ffmpeg, yt-dlp, mpv)
-A command line utility combining both mpv and yt-dlp to allow users to watch and/or download youtube videos via their terminal, completely browserless.
+A command line utility combining both mpv and yt-dlp to allow users to watch/listen to and/or download youtube videos via their terminal, completely browserless.
 
 ## Features ##
 - Responsive terminal based interface
