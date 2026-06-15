@@ -10,6 +10,7 @@ A command line utility combining both mpv and yt-dlp to allow users to watch/lis
 - Ability to change file extensions via the script
 - Now Streaming: "Video Title" Display Environment/Window Manager notification integration
 - bfym_audio, an audio only stream/download script
+- bfym_channel, a channel search script, detailing the top 5 videos for a channel, as well, providing the option to watch/download chosen video
 
 ## Dependencies ##
 (in order)
@@ -46,10 +47,10 @@ C - Compatible: The ability to work the same/similar on as many devices as possi
 
 ## Potential upgrades ##
 - Internal script flags/tacs to speed past the interactivity and give the power user immediate control/less handholding
-- Channel selection (needs to be a feature within yt-dlp), research indicates that this is possible. Touching base with suggestor to understand parameters before implementation
 - URL mode toggle/option
-
-- **COMING SOON** bfym video and audio stream/download all from one script
+- **COMING SOON** bfym video, audio stream/download, as well as, channel search functionality all from one script
+- Conversion from bash to C or rust
+- Eventual web app creation, a clean website to watch/download videos straight from your web browser.
 
 ## Cancelled ideas ##
 - Confirmation on search variable before proceeding. Will likely require while, while not Y, return back to the initial search - too messy coding-wise
@@ -65,6 +66,7 @@ C - Compatible: The ability to work the same/similar on as many devices as possi
 - Full script bash validation with no errors
 - printf formatting is done in its entirety: unsigned integers, strings, escape seq. handling etc.
 - Added native yt-dlp commands to improve outputs
+- Channel search, providing the top 5 videos for said channel + watch/download functionality
 
 ## Special Thanks ##
 mpv & yt-dlp - both have no idea I exist but this project is nothing without them
