@@ -66,13 +66,13 @@ else
       result=$(yt-dlp --get-filename "$videoUrl")
       printf "%b" "\nYour video has been saved as: $result"
       printf "%b" "\nNow Streaming: $title\n"
-      notify-send "mpv-yt-watch" "Now Streaming: $title"
+      notify-send "bfym" "Now Streaming: $title"
       mpv --ytdl-format="bestvideo[ext=$ext][height=$h]+bestaudio" "$videoUrl"
       printf "Thank you for using bfym".
     ;;
     n|N)
       printf "%b" "\nNow Streaming: $title\n"
-      notify-send "mpv-yt-watch" "Now Streaming: $title"
+      notify-send "bfym" "Now Streaming: $title"
       mpv --ytdl-format="bestvideo[ext=$ext][height=$h]+bestaudio" "$videoUrl"
       printf "Thank you for using bfym". 
     ;;

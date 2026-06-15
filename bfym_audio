@@ -47,14 +47,14 @@ else
       mpv "$streamUrl"
       printf "%b" "\nNow Streaming: $title\n"
       notify-send "bfym_audio" "Now Streaming: $title"
-      printf "Thank you for using bfym_audio"
+      printf "Thank you for using bfym"
     ;;
     n|N)
       printf "%b" "\nNow Streaming: $title\n"
       streamUrl=$(yt-dlp -g -f bestaudio "$videoUrl")
       notify-send "bfym_audio" "Now Streaming: $title"
       mpv "$streamUrl"
-      printf "Thank you for using bfym_audio"
+      printf "Thank you for using bfym"
     ;;
     *)
       printf "Invalid input! Please try again"
