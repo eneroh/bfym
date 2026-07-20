@@ -16,15 +16,31 @@ else
   channelUrl=$(yt-dlp ytsearch1:"$channelSearch" --skip-download --print "%(channel_url)s")
   channelId=$(yt-dlp ytsearch1:"$channelSearch" --skip-download --print "%(uploader_id)s")
   printf "%b" "\nChannel located: $channelId"
+  
+  filterSel=${filterSel:-N}
+  filter=${filter:-N}
+  printf "%b" "\n1. Most viewed videos\n2. Most liked videos\n3. Highest comment count"  
+  printf "%b" "\n\nChoose filter selector: "
+  read -rn1 -- filterSel
+  
+  case $filterSel in
+	  1)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(-.view_count) | .[:5] | .[] | .url')  ;;
+          2)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(.like_count) | .[:5] | .[] | .url')  ;;
+	  3)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(.comment_count) | .[:5] | .[] | .url')  ;;
+	  *)
+		  printf "Invalid input, please try again".
+		  exit 1;
+	  ;;
+  esac
 
-  mViewedVideos=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(.view_count) | .[:5] | .[] | .url')
-  printf "%b" "\nHere are $channelId's highest viewed videos:\n"
-
-  arrayVideos=(${mViewedVideos[@]})
-  mViewedVideos=$(printf "%s\n" "$mViewedVideos" | tr -d '"')
+  printf "%b" "\nHere are $channelId's  videos:\n"
+  
+  arrayVideos=(${filter[@]})
+  filter=${filter:-N}
+  filter=$(printf "%s\n" "$filter" | tr -d '"')
 
   count=1
-  for item in $mViewedVideos; 
+  for item in $filter; 
   do
 	  watchList=$(printf "%u %s" "$count" "$item")
 	  echo "$watchList"
@@ -53,11 +69,13 @@ else
 		printf "Invalid input, please try again!"
 	;;
   esac
- 
+
+  url=${url:-N}
   url="${url//\"/}"
-  echo "$url"
-  
-  printf "%b" "\nWould you like to save a copy of this video: $title? [y\N]: "
+
+  title=$(yt-dlp --get-title $url)
+
+  printf "%b" "\nWould you like to save a copy of this video: $title? [y/N]: "
   read -rn1 -- dlConfirm
   dlConfirm=${dlConfirm:-N}
 

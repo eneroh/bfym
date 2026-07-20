@@ -32,8 +32,13 @@ else
     2)  ext=webm  ;;
     *)  ext=webm  ;;
   esac
-  
-  formatRes=$(printf "%s" "${searchFormat}" | grep --regexp '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
+ 
+  if [[ "$formatExt" == 1 ]]; then
+    formatRes=$(printf "%s" "${searchFormat}" | grep -i "mp4" | grep --regexp '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
+  else
+    formatRes=$(printf "%s" "${searchFormat}" | grep -i "webm" | grep --regexp '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
+  fi
+
   formatRes="${formatRes//\,/}"
   printf "%b" "\n$formatRes\n"
   lineCountFR=$(printf "%b" "$formatRes\n" | wc --lines)
