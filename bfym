@@ -7,8 +7,8 @@ read -rn1 -- optionSelect
 
 case $optionSelect in
 	1)  ./bfym_video  ;;
-	2)  ./bfym_audio ;;
-	3)  ./bfym_channel ;;
+	2)  ./bfym_audio  ;;
+	3)  ./bfym_channel  ;;
 	*)  
 		printf "%b" "\nInvalid input! Please try again."
 		exit 1;
