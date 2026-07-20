@@ -4,7 +4,7 @@
 
 set -euo pipefail
 
-printf "Input search string [Song | Music Artist | Youtuber]: "
+printf "%b" "\nInput search string [Song | Music Artist | Youtuber]: "
 read -r -- search
 
 if [[ -z "$search" ]]; then
