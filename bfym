@@ -4,8 +4,10 @@ printf "%b" "Welcome to bfym!\n"
 printf "%b" "1. VIDEO steam/download\n2. AUDIO stream/download\n3. Youtube Channel - Top 5\n"
 printf "%b" "Select your option: "
 read -rn1 -- optionSelect
-
-case $optionSelect in
+if [[ -z "$optionSelect" ]]; then
+  printf "%s" "Invalid input, please try again!"
+else
+  case $optionSelect in
 	1)  ./bfym_video  ;;
 	2)  ./bfym_audio  ;;
 	3)  ./bfym_channel  ;;
@@ -13,4 +15,5 @@ case $optionSelect in
 		printf "%b" "\nInvalid input! Please try again."
 		exit 1;
 	;;
-esac
+  esac
+fi

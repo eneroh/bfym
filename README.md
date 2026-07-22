@@ -6,9 +6,11 @@ A command line utility combining both mpv and yt-dlp to allow users to watch/lis
 - Video resolution options from 144p to 4K
 - Support for youtube videos that contain different languages i.e. Korean, Japanese etc.
 - Video streaming functionality
-- Option to download video at end of script
+- Option to download video/audio at end of script
 - Ability to change file extensions via the script
 - Now Streaming: "Video Title" Display Environment/Window Manager notification integration
+- bfym, a central menu to access all options (video, audio and channel)
+- bfym_video, a video only stream/download script
 - bfym_audio, an audio only stream/download script
 - bfym_channel, a channel search script, detailing the top 5 videos for a channel, as well, providing the option to watch/download chosen video
 
@@ -25,31 +27,29 @@ yt-dlp
 mpv
 
 ## Philosophy ##
-bfym intends to: K.I.S.S. Keep it simple, stupid.
+bfym intends to: Keep it simple, stupid.
 <br>
 <br>
-F - Follow rules: Follow bash best practices, as closely as possible & validate script through shellcheck to ensure there are no errors
+Follow rules: Follow bash best practices, as closely as possible & validate script through shellcheck to ensure there are no errors
 <br>
 <br>
-S - Simple: Minimal dependencies (mpv, yt-dlp, ffmpeg and I guess bash)
+Simple: Minimal dependencies (mpv, yt-dlp, ffmpeg and I guess bash)
 <br>
 <br>
-U - User focused: You do not NEED a degree to use this. Inputs and code will be clear and concise (example text and expanded flags respectively)
+User focused: You do not NEED a degree to use this. Inputs and code will be clear and concise (example text and expanded flags respectively)
 <br>
 <br>
-S - Speed oriented: The command: time will be utilized when testing similar commands to determine the fastest. Ensuring quick outputs [time example], as well as, keep big/time consuming commands outside of loops
+Speed oriented: The command: time will be utilized when testing similar commands to determine the fastest. Ensuring quick outputs [time example], as well as, keep big/time consuming commands outside of loops
 <br>
 <br>
-M - Minimal: Utilize bash functionality as much as possible instead of relying on other outside packages, as well as, utilize dependencies flags/tacs where necessary and not where excessive
+Minimal: Utilize bash functionality as much as possible instead of relying on other outside packages, as well as, utilize dependencies flags/tacs where necessary and not where excessive
 <br>
 <br>
-C - Compatible: The ability to work the same/similar on as many devices as possible with limited degraded performance (i.e. smartphones, laptops/desktops, servers, maybe IoT [try to run mpv-yt-watch on a fridge])
+Compatible: The ability to work the same/similar on as many devices as possible with limited degraded performance (i.e. smartphones, laptops/desktops, servers, maybe IoT [try to run mpv-yt-watch on a fridge])
 
 ## Potential upgrades ##
 - Internal script flags/tacs to speed past the interactivity and give the power user immediate control/less handholding
 - URL mode toggle/option
-- **COMING SOON** bfym video, audio stream/download, as well as, channel search functionality all from one script
-- Conversion from bash to C or rust
 - Eventual web app creation, a clean website to watch/download videos straight from your web browser.
 
 ## Cancelled ideas ##
@@ -67,6 +67,7 @@ C - Compatible: The ability to work the same/similar on as many devices as possi
 - printf formatting is done in its entirety: unsigned integers, strings, escape seq. handling etc.
 - Added native yt-dlp commands to improve outputs
 - Channel search, providing the top 5 videos for said channel + watch/download functionality
+- bfym video, audio stream/download, as well as, channel search functionality all from one script
 
 ## Special Thanks ##
 mpv & yt-dlp - both have no idea I exist but this project is nothing without them
