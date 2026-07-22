@@ -5,7 +5,7 @@ A command line utility combining both mpv and yt-dlp to allow users to watch/lis
 - Responsive terminal based interface
 - Video resolution options from 144p to 4K
 - Support for youtube videos that contain different languages i.e. Korean, Japanese etc.
-- Video streaming functionality
+- Video/audio streaming functionality
 - Option to download video/audio at end of script
 - Ability to change file extensions via the script
 - Now Streaming: "Video Title" Display Environment/Window Manager notification integration
