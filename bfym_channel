@@ -19,20 +19,20 @@ else
   
   filterSel=${filterSel:-N}
   filter=${filter:-N}
-  printf "%b" "\n1. Most viewed videos\n2. Most liked videos\n3. Highest comment count"  
+  printf "%b" "\n1. Most viewed videos\n2. Highest comment count"  
   printf "%b" "\n\nChoose filter selector: "
   read -rn1 -- filterSel
   
   case $filterSel in
 	  1)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(-.view_count) | .[:5] | .[] | .url')  ;;
-	  2)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(-(.like_count // 0) | .[] | "\(.like_count) - \(.title)"')  ;;
-	  3)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(.comment_count) | .[:5] | .[] | .url')  ;;
+	  #2)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(.like_count // 0) | .[] | "\(.like_count) - \(.title)"' | head -n 5 | cut -c 9- | sed 's/"//')  ;;
+	  2)  filter=$(yt-dlp --dump-json --flat-playlist \ "$channelUrl" | jq -s 'sort_by(.comment_count) | .[:5] | .[] | .url')  ;;
 	  *)
 		  printf "%b" "\nInvalid input, please try again".
 		  exit 1;
 	  ;;
   esac
-
+  
   printf "%b" "\nHere are $channelId's  videos:\n"
   
   arrayVideos=(${filter[@]})
