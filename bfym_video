@@ -34,9 +34,9 @@ else
   esac
  
   if [[ "$formatExt" == 1 ]]; then
-    formatRes=$(printf "%s" "${searchFormat}" | grep -i "mp4" | grep --regexp '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
+    formatRes=$(printf "%s" "${searchFormat}" | grep -i "mp4" | grep --regexp '144p\|240p\|480p\|360p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
   else
-    formatRes=$(printf "%s" "${searchFormat}" | grep -i "webm" | grep --regexp '144p\|240p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
+    formatRes=$(printf "%s" "${searchFormat}" | grep -i "webm" | grep --regexp '144p\|240p\|360p\|480p\|720p\|1080p\|1440p\|2160p' | awk '{print $14;}' | uniq | nl)
   fi
 
   formatRes="${formatRes//\,/}"
@@ -48,6 +48,7 @@ else
   case $formatRes in
     1)  h=144  ;;
     2)  h=240  ;;
+    3)  h=360  ;;
     3)  h=480  ;;
     4)  h=720  ;;
     5)  h=1080  ;;
